@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "485092520857",
+    "firebase_url": "https://bookie-d5134.firebaseio.com",
+    "project_id": "bookie-d5134",
+    "storage_bucket": "bookie-d5134.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485092520857:android:fc7a889eb049cb41405908",
+        "android_client_info": {
+          "package_name": "com.example.bookie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485092520857-j7mboo7l2pvupc1g8civjtselqet85n4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bookie",
+            "certificate_hash": "9cbb215ede853a8c493f167cc134d876b8aa0fba"
+          }
+        },
+        {
+          "client_id": "485092520857-jl2a7sp92j12tqslaqeil4b6ir6k68k6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDS5UJ20lo8rITWd4Jn_fRFWdIqxuL8680"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "485092520857-jl2a7sp92j12tqslaqeil4b6ir6k68k6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
