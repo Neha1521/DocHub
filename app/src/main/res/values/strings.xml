@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Bookie</string>
+    <string name="downloads">Downloads</string>
+    <string name="uploads">Uploads</string>
+    <string name="authenticate">Authenticate</string>
+    <string name="profile">Profile</string>
+    <string name="documents">Documents</string>
+    <string-array name="document_types">
+        <item>Book</item>
+        <item>Notes</item>
+        <item>Question papers</item>
+        <item>Assignments</item>
+    </string-array>
 </resources>

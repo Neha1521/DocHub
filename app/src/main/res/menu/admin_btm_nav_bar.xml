@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/download"
+        android:enabled="true"
+        android:icon="@drawable/download"
+        android:title="@string/downloads"
+        android:visible="true" />
+    <item
+        android:id="@+id/upload"
+        android:enabled="true"
+        android:icon="@drawable/upload"
+        android:title="@string/uploads"
+        android:visible="true" />
+    <item
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/search"
+        android:title="@android:string/search_go"
+        android:visible="true" />
+    <item
+        android:id="@+id/authenticate"
+        android:enabled="true"
+        android:icon="@drawable/mail"
+        android:title="@string/authenticate"
+        android:visible="true" />
+    <item
+        android:id="@+id/profile"
+        android:enabled="true"
+        android:icon="@drawable/profile"
+        android:title="@string/profile"
+        android:visible="true" />
+</menu>

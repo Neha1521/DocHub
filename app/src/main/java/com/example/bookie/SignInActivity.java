@@ -69,7 +69,28 @@ public class SignInActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null){
-            //startActivity(new Intent(SignInActivity.this, ViewActivity.class));
+            DatabaseReference db = FirebaseDatabase.getInstance().getReference("Users/");
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for(DataSnapshot dataSnapshot:snapshot.getChildren()){
+                        if(Objects.equals(dataSnapshot.getKey(), Objects.requireNonNull(mAuth.getCurrentUser()).getUid())){
+                            User user = dataSnapshot.getValue(User.class);
+                            if(Objects.requireNonNull(user).getStatus() == 0){
+                                startActivity(new Intent(SignInActivity.this, UserActivity.class));
+                            }
+                            else {
+                                startActivity(new Intent(SignInActivity.this, AdminActivity.class));
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
         }
     }
 
