@@ -110,9 +110,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         progressBar.setVisibility(View.GONE);
                         textViewStatus.setText("File Uploaded Successfully");
-                        Upload upload = new Upload(editTextFilename.getText().toString(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
+                        //Upload upload = new Upload(editTextFilename.getText().toString(), taskSnapshot.getMetadata().getReference().getDownloadUrl().toString());
 
-                        mDatabaseReference.child(mDatabaseReference.push().getKey()).setValue(upload);
+                        //mDatabaseReference.child(mDatabaseReference.push().getKey()).setValue(upload);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

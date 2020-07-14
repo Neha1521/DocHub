@@ -10,8 +10,11 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +47,7 @@ public class UploadFragment extends Fragment {
     private Spinner docType;
     private EditText docName;
     private Button upload;
+    private ProgressBar uploadBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -56,28 +60,35 @@ public class UploadFragment extends Fragment {
         docType = view.findViewById(R.id.spDoctype);
         docName = view.findViewById(R.id.etDocname);
         upload = view.findViewById(R.id.btnUpload);
+        uploadBar = view.findViewById(R.id.pbUpload);
 
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
+                R.layout.support_simple_spinner_dropdown_item, getActivity().getResources().getStringArray(R.array.document_types));
+        docType.setAdapter(typeAdapter);
 
+        upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getDoc();
+            }
+        });
 
         return view;
 
     }
-    /*
-    public void getPDF(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(Objects.requireNonNull(getContext()),
-                Manifest.permission.READ_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                    Uri.parse("package:" + Objects.requireNonNull(getActivity()).getPackageName()));
-            startActivity(intent);
-            return;
+
+    private void getDoc(){
+        if (ContextCompat.checkSelfPermission(Objects.requireNonNull(getActivity()),
+                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    1);
         }
 
         Intent intent = new Intent();
         intent.setType("application/pdf");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_PDF_CODE);
-
     }
 
     @Override
@@ -96,35 +107,43 @@ public class UploadFragment extends Fragment {
     }
 
     private void uploadFile(Uri data) {
-        //progressBar.setVisibility(View.VISIBLE);
-        StorageReference sRef = storageReference.child("doc/"+docName.getText().toString()+".pdf");
+        uploadBar.setVisibility(View.VISIBLE);
+        final String docKey = databaseReference.push().getKey();
+
+        StorageReference sRef = storageReference.child("doc/"+docKey+".pdf");
         sRef.putFile(data)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        //progressBar.setVisibility(View.GONE);
-                        //textViewStatus.setText("File Uploaded Successfully");
-                        Upload upload = new Upload(docName.getText().toString(), Objects.requireNonNull(Objects.requireNonNull(taskSnapshot.getMetadata()).getReference()).getDownloadUrl().toString());
+                        uploadBar.setVisibility(View.GONE);
+                        Toast.makeText(getActivity(), "File uploaded", Toast.LENGTH_SHORT).show();
+                        Upload upload = new Upload(docName.getText().toString(),
+                                docType.getSelectedItem().toString(),
+                                Objects.requireNonNull(Objects.requireNonNull(taskSnapshot.getMetadata()).
+                                        getReference()).getDownloadUrl().toString());
 
-                        databaseReference.child(databaseReference.push().getKey()).setValue(upload);
+                        assert docKey != null;
+                        databaseReference.child(docKey).setValue(upload);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
-                        Toast.makeText(getActivity().getApplicationContext(), exception.getMessage(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), exception.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
                     @SuppressWarnings("VisibleForTests")
                     @Override
-                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
                         double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                        //textViewStatus.setText((int) progress + "% Uploading...");
+                        uploadBar.setProgress((int) progress);
+                        // add percentage too
                     }
                 });
 
-    }*/
+    }
+
 
 }
