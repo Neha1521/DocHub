@@ -124,7 +124,8 @@ public class UploadFragment extends Fragment {
                                         getReference()).getDownloadUrl().toString());
 
                         assert docKey != null;
-                        databaseReference.child(docKey).setValue(upload);
+                        databaseReference.child("Books").child(docKey).setValue(upload);
+                        databaseReference.child(docType.getSelectedItem().toString()).child(docKey).setValue("");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

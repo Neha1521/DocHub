@@ -43,6 +43,10 @@ public class AdminActivity extends AppCompatActivity implements BottomNavigation
             case R.id.upload:
                 fragment = new UploadFragment();
                 break;
+
+            case R.id.download:
+                fragment = new DownloadFragment();
+                break;
         }
 
         return loadFragment(fragment);
