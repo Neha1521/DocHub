@@ -37,7 +37,6 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 public class SearchFragment extends Fragment {
 
-    private ListView docListView;
     private Spinner docTypeSpinner;
     private List<String> docKeyList;
     private List<String> doc;
@@ -51,7 +50,7 @@ public class SearchFragment extends Fragment {
         View view = inflater.inflate(R.layout.search_fragment, null);
 
         docTypeSpinner = view.findViewById(R.id.spDocType);
-        docListView = view.findViewById(R.id.lvDocList);
+        ListView docListView = view.findViewById(R.id.lvDocList);
         doc = new ArrayList<>();
 
         docKeyList = new ArrayList<>();

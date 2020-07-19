@@ -4,19 +4,15 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,7 +42,6 @@ public class UploadFragment extends Fragment {
 
     private Spinner docType;
     private EditText docName;
-    private Button upload;
     private ProgressBar uploadBar;
 
     @Override
@@ -59,7 +54,7 @@ public class UploadFragment extends Fragment {
 
         docType = view.findViewById(R.id.spDoctype);
         docName = view.findViewById(R.id.etDocname);
-        upload = view.findViewById(R.id.btnUpload);
+        Button upload = view.findViewById(R.id.btnUpload);
         uploadBar = view.findViewById(R.id.pbUpload);
 
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()),
