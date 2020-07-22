@@ -5,6 +5,22 @@
     <string name="authenticate">Authenticate</string>
     <string name="profile">Profile</string>
     <string name="documents">Documents</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="new_sign_up_here">New? Sign up here</string>
+    <string name="your_mail_id">Your mail id</string>
+    <string name="your_password">Your password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="already_have_an_acount_sign_in">Already have an acount? Sign In</string>
+    <string name="re_type_password">Re-type password</string>
+    <string name="your_name">Your name</string>
+    <string name="dochub">DocHub</string>
+    <string name="name">Name</string>
+    <string name="mail_id">Mail id</string>
+    <string name="password">Password</string>
+    <string name="re_type_password1">Re-type Password</string>
+    <string name="upload">Upload</string>
+    <string name="document_name">Document Name</string>
     <string-array name="document_types">
         <item>Book</item>
         <item>Notes</item>

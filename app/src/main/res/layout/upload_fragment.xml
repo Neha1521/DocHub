@@ -9,14 +9,15 @@
         android:id="@+id/spDoctype"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:background="@drawable/round_corner_border"
         android:entries="@array/document_types"
         android:spinnerMode="dropdown"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.319" />
+        app:layout_constraintVertical_bias="0.24" />
 
     <EditText
         android:id="@+id/etDocname"
@@ -24,7 +25,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:gravity="bottom|center"
-        android:hint="Document Name"
+        android:hint="@string/document_name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,8 @@
         android:id="@+id/btnUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="upload"
+        android:text="@string/upload"
+        android:background="@drawable/round_corner_filled_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

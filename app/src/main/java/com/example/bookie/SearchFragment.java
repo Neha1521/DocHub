@@ -71,6 +71,7 @@ public class SearchFragment extends Fragment {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(docTypeSpinner.getSelectedItem().toString());
                 final DatabaseReference name = FirebaseDatabase.getInstance().getReference().child("Books");
+                System.out.println(docTypeSpinner.getSelectedItem().toString());
 
                 databaseReference.addValueEventListener(new ValueEventListener() {
                     @Override
@@ -78,6 +79,7 @@ public class SearchFragment extends Fragment {
 
                         doc.clear();
                         docKeyList.clear();
+                        docsAdapter.notifyDataSetChanged();
                         for(final DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                             docKeyList.add(dataSnapshot.getKey());
@@ -100,6 +102,7 @@ public class SearchFragment extends Fragment {
                                 }
                             });
                         }
+                        docsAdapter.notifyDataSetChanged();
                     }
 
                     @Override
